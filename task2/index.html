@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>интукод</title>
+  </head>
+  <body>
+    <div id="main">
+      <ul id="list">
+        <li>html</li>
+        <li>css</li>
+      </ul>
+    </div>
+    <div id="copyright">(c) INTOCODE</div>
+    <script>
+      const body = document.body;
+      const h1 = () => {
+        const h1 = document.createElement("h1");
+        h1.textContent = "Работа с DOM";
+        body.prepend(h1);
+      };
+      h1();
+
+      const linkDOM = () => {
+        const divMain = document.getElementById("main");
+        const a = document.createElement("a");
+        a.setAttribute(
+          "href",
+          "https://paper.dropbox.com/doc/DOM-KrSbmrOQHo09BZwgsOmhp"
+        );
+        a.textContent = "DOM";
+        divMain.append(a);
+      };
+      linkDOM();
+
+      const changeBackgroundBody = (color) => {
+        body.style.background = `${color}`;
+      };
+      changeBackgroundBody("red");
+
+      const addLi = (text) => {
+        const list = document.getElementById("list");
+        const li = document.createElement("li");
+        li.textContent = `${text}`;
+        list.append(li);
+      };
+      addLi("qwrokqowrkpoqw");
+
+      const deleteCopyright = () => {
+        const copyright = document.getElementById("copyright");
+        copyright.remove();
+      };
+      deleteCopyright();
+    </script>
+  </body>
+</html>
