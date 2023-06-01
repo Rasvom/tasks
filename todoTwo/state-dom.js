@@ -10,7 +10,7 @@ let array = [
   },
   {
     text: "Lorm",
-    done: true,
+    done: false,
   },
   {
     text: "em ipsum",
@@ -18,7 +18,7 @@ let array = [
   },
   {
     text: "Lor22sum",
-    done: true,
+    done: false,
   },
 ];
 
@@ -42,6 +42,7 @@ const render = (arr) => {
     const checkbox = document.createElement("input");
 
     checkbox.type = "checkbox";
+    checkbox.checked = item.done;
     div.classList.add("list__item");
     textDiv.textContent = item.text;
     removeButton.textContent = "x";
@@ -49,12 +50,15 @@ const render = (arr) => {
     div.append(checkbox, textDiv, removeButton);
     todo.append(div);
 
+    array[i].done
+      ? (checkbox.parentElement.style.background = "red")
+      : (checkbox.parentElement.style.background = "");
+
     removeButton.addEventListener("click", () => {
       remove(i);
     });
-    checkbox.addEventListener("click", (e) => {
-      const parent = e.target.parentElement;
-      checkTodo(parent, i);
+    checkbox.addEventListener("click", () => {
+      checkTodo(i);
     });
   });
 };
@@ -65,11 +69,8 @@ const remove = (i) => {
   render(array);
 };
 
-const checkTodo = (parent, i) => {
-  parent.firstElementChild.checked
-    ? (array[i].done = true)
-    : (array[i].done = false);
-  array[i].done
-    ? (parent.style.background = "red")
-    : (parent.style.background = "");
+const checkTodo = (i) => {
+  todo.innerHTML = "";
+  array[i].done = !array[i].done;
+  render(array);
 };
